@@ -63,8 +63,8 @@ public class ShowTrackerResource {
     @Timed
     @Path("/shows")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void postShow(ShowPayload showPayload) {
-        showDAO.persist(showPayload.getShow());
+    public ShowPayload postShow(ShowPayload showPayload) {
+        return new ShowPayload(showDAO.persist(showPayload.getShow()));
     }
 
 

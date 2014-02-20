@@ -43,9 +43,10 @@ public class ShowDAO {
         return shows;
     }
 
-    public void persist(Show show) {
+    public Show persist(Show show) {
         BasicDBObject newDoc = createBasicDBObjectFromShow(show);
         database.getCollection(collection).insert(newDoc);
+        return show;
     }
 
     public void delete(String queryId) {
