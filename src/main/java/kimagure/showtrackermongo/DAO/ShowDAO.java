@@ -43,14 +43,24 @@ public class ShowDAO {
         return shows;
     }
 
-    public void persist(Show show) {
+    public Show persist(Show show) {
         BasicDBObject newDoc = createBasicDBObjectFromShow(show);
         database.getCollection(collection).insert(newDoc);
+        return findById(show.getId());
     }
 
-    public void perish(String queryId) {
+    public void delete(String queryId) {
         BasicDBObject query = new BasicDBObject("id", queryId);
         database.getCollection(collection).remove(query);
+    }
+
+    public Show update(String queryId, Show partialShow) {
+        BasicDBObject query = new BasicDBObject("id", queryId);
+        BasicDBObject update = new BasicDBObject("title", partialShow.getTitle())
+                                         .append("episode", partialShow.getEpisode());
+        DBObject result = database.getCollection(collection).findAndModify(query, update);
+        Show updatedShow = createShowFromDBObject(result);
+        return updatedShow;
     }
 
     private Show createShowFromDBObject(DBObject result) {

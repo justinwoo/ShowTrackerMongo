@@ -1,6 +1,7 @@
 package kimagure.showtrackermongo;
 
 import com.yammer.dropwizard.Service;
+import com.yammer.dropwizard.assets.AssetsBundle;
 import com.yammer.dropwizard.config.Bootstrap;
 import com.yammer.dropwizard.config.Environment;
 import kimagure.showtrackermongo.DAO.ShowDAO;
@@ -24,6 +25,7 @@ public class ShowTrackerService extends Service<ShowTrackerConfiguration> {
     @Override
     public void initialize(Bootstrap<ShowTrackerConfiguration> bootstrap) {
         bootstrap.setName("showtracker-mongo");
+        bootstrap.addBundle(new AssetsBundle("/assets", "/"));
     }
 
     @Override

@@ -2,12 +2,13 @@ package kimagure.showtrackermongo.resources;
 
 import com.yammer.metrics.annotation.Timed;
 import kimagure.showtrackermongo.DAO.ShowDAO;
+import kimagure.showtrackermongo.core.model.Show;
+import kimagure.showtrackermongo.core.response.ShowPayload;
+import kimagure.showtrackermongo.core.response.ShowsPayload;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -29,8 +30,42 @@ public class ShowTrackerResource {
 
     @GET
     @Timed
-    public String sayHello() {
-        return "hello\n";
+    @Path("/shows")
+    public ShowsPayload getAllShows() {
+        List<Show> shows = showDAO.findAll();
+        return new ShowsPayload(shows);
     }
+
+    @GET
+    @Timed
+    @Path("/shows/{id}")
+    public ShowPayload getShowById(@PathParam("id") String id) {
+        Show show = showDAO.findById(id);
+        return new ShowPayload(show);
+    }
+
+    @PUT
+    @Timed
+    @Path("/shows/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public ShowPayload putShow(@PathParam("id") String id, ShowPayload showPayload) {
+        return new ShowPayload(showDAO.update(id, showPayload.getShow()));
+    }
+
+    @DELETE
+    @Timed
+    @Path("/shows/{id}")
+    public void deleteShow(@PathParam("id") String id) {
+        showDAO.delete(id);
+    }
+
+    @POST
+    @Timed
+    @Path("/shows")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public ShowPayload postShow(ShowPayload showPayload) {
+        return new ShowPayload(showDAO.persist(showPayload.getShow()));
+    }
+
 
 }

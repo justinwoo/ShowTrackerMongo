@@ -10,13 +10,23 @@ import kimagure.showtrackermongo.core.model.Show;
  * Time: 7:33 PM
  * To change this template use File | Settings | File Templates.
  */
-public class ShowsResponse {
+public class ShowsPayload {
+
     private List<Show> shows;
 
-    public ShowsResponse() {
+    public ShowsPayload() {
     }
 
-    public ShowsResponse(List<Show> shows) {
+    public ShowsPayload(List<Show> shows) {
         this.shows = shows;
     }
+
+    public List<Show> getShows() {
+        return shows;
+    }
+
+    public void setShows(List<Show> shows) {
+        this.shows = shows;
+    }
+
 }
