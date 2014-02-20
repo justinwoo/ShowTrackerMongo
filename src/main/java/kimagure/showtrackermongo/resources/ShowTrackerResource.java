@@ -48,8 +48,8 @@ public class ShowTrackerResource {
     @Timed
     @Path("/shows/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public ShowPayload putShow(@PathParam("id") String id, ShowPayload showPayload) {
-        return new ShowPayload(showDAO.update(id, showPayload.getShow()));
+    public void putShow(@PathParam("id") String id, ShowPayload showPayload) {
+        showDAO.update(id, showPayload.getShow());
     }
 
     @DELETE
@@ -63,8 +63,8 @@ public class ShowTrackerResource {
     @Timed
     @Path("/shows")
     @Consumes(MediaType.APPLICATION_JSON)
-    public ShowPayload postShow(ShowPayload showPayload) {
-        return new ShowPayload(showDAO.persist(showPayload.getShow()));
+    public void postShow(ShowPayload showPayload) {
+        showDAO.persist(showPayload.getShow());
     }
 
 
