@@ -31,7 +31,7 @@ public class ShowTrackerService extends Service<ShowTrackerConfiguration> {
         MongoManaged mongoManaged = new MongoManaged(configuration.mongoHost, configuration.mongoPort, configuration.mongoDB);
         environment.manage(mongoManaged);
         environment.addHealthCheck(new MongoHealthCheck(mongoManaged.getMongoClient()));
-        ShowDAO showDAO = new ShowDAO(mongoManaged.getDatabase());
+        ShowDAO showDAO = new ShowDAO(mongoManaged.getDatabase(), configuration.mongoCollection);
         environment.addResource(new ShowTrackerResource(showDAO));
     }
 

@@ -17,8 +17,8 @@ public class MongoManaged implements Managed {
     private DB database;
 
     public MongoManaged(String host, int port, String database) throws Exception {
-        mongoClient = new MongoClient(host, port);
-        mongoClient.getDB(database);
+        this.mongoClient = new MongoClient(host, port);
+        this.database = mongoClient.getDB(database);
     }
 
     public MongoClient getMongoClient() {

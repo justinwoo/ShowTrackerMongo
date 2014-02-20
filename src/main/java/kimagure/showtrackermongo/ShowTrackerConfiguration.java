@@ -26,4 +26,7 @@ public class ShowTrackerConfiguration extends Configuration {
     @JsonProperty
     public String mongoDB = "showtracker";
 
+    @JsonProperty
+    public String mongoCollection = "showtracker";
+
 }

@@ -1,7 +1,7 @@
-package kimagure.showtrackermongo.model.response;
+package kimagure.showtrackermongo.core.response;
 
 import java.util.List;
-import kimagure.showtrackermongo.model.Show;
+import kimagure.showtrackermongo.core.model.Show;
 
 /**
  * Created with IntelliJ IDEA.

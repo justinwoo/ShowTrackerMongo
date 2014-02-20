@@ -1,4 +1,4 @@
-package kimagure.showtrackermongo.model;
+package kimagure.showtrackermongo.core.model;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -23,6 +23,12 @@ public class Show {
     }
 
     public Show(String title, Integer episode) {
+        this.title = title;
+        this.episode = episode;
+    }
+
+    public Show(String id, String title, Integer episode) {
+        this.id = id;
         this.title = title;
         this.episode = episode;
     }
